@@ -4,7 +4,7 @@ import imutils
 cam=cv2.VideoCapture(0)
 time.sleep(1)
 firstFrame=None
-area=500
+area=1500
 while True:
     _,img=cam.read()
     text="Normal"
@@ -15,7 +15,7 @@ while True:
         firstFrame=gaussianimg
         continue
     imgDiff=cv2.absdiff(firstFrame,gaussianimg)
-    threshimg=cv2.threshold(imgDiff,25,255,cv2.THRESH_BINARY)[1]
+    threshimg=cv2.threshold(imgDiff,40,255,cv2.THRESH_BINARY)[1]
     threshimg=cv2.dilate(threshimg,None,iterations=2)
     cnts=cv2.findContours(threshimg.copy(),cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
     cnts=imutils.grab_contours(cnts)
